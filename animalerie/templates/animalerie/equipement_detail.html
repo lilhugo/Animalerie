@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+    <head>
+        <title>L'animalerie</title>
+        <link rel="stylesheet" href="{% static 'css/animalerie.css' %}">
+    
+    </head>
+    <body>
+        <div>
+            <h1 id = 'titre_princ'><a href="/">L'ANIMALERIE</a></h1>        
+        </div>
+        <div id='second'>
+                    <img src="/{{equipement.photo}}" alt="" id="picbig"/>
+                {% if equipement.id_equip == 'nid' %}
+                    <h2>Bienvenue dans le {{equipement.id_equip}} ! Ne faites pas de bruit les rongeurs dorment ici...</br>
+                    Le {{equipement.id_equip}} est actuellement {{equipement.disponibilite}}.</h2>   
+                {% endif %}
+                {% if equipement.id_equip == 'roue' %}
+                    <h2>Bienvenue dans la {{equipement.id_equip}} ! Ici les rongeurs s'amusent à tourner durant des heures...</br>
+                    La {{equipement.id_equip}} est actuellement {{equipement.disponibilite}}.</h2>   
+                {% endif %}  
+                {% if equipement.id_equip == 'litière' %}
+                    <h2>Bienvenue dans la {{equipement.id_equip}} ! Ici les rongeurs ne font rien...</br>
+                    La {{equipement.id_equip}} est actuellement {{equipement.disponibilite}}.</h2>   
+                {% endif %}    
+                {% if equipement.id_equip == 'mangeoire' %}
+                    <h2>Bienvenue dans la {{equipement.id_equip}} ! Les rongeurs dévorent ici leurs meilleurs plats...
+                    </br>La {{equipement.id_equip}} est actuellement {{equipement.disponibilite}}.</h2>   
+                {% endif %}    
+
+            </div>
+    </body>
+</html>

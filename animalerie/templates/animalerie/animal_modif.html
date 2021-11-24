@@ -1,0 +1,76 @@
+{% load static %}
+<html>
+    <head>
+        <title>L'animalerie</title>
+        <link rel="stylesheet" href="{% static 'css/animalerie.css' %}">
+    
+    </head>
+    <body>
+        <div>
+            <h1 id = 'titre_princ'><a href="/">L'ANIMALERIE</a></h1>        
+        </div>
+        <div id='second'>
+                    <img src="/{{animal.photo}}" alt="" id="picbig"/>
+                    {% if animal.etat == 'affamé'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement très {{animal.etat}} et se trouve actuellement dans la {{animal.lieu}}. Il faut donc le nourrir.</br>
+                        </h2>
+                        {% for equipement in equipements %}
+                            {% if equipement.id_equip == 'mangeoire'%}
+                                {%if equipement.disponibilite == 'libre'%}
+                                    <h2>Pour cela rien de plus simple, il suffit de cliquer sur le boutton ci-dessous...</h2> 
+                                    <form method="POST" class="post-form">{% csrf_token %}
+                                        <button id="button" type="submit">Nourrir</a></button>
+                                    </form>
+                                {%else%}
+                                    <h2>Attention le mangeoire n'est pas libre !!</h2>
+                                {% endif%}
+                            {% endif %}
+                        {% endfor %}         
+                    {% endif %}
+                    {% if animal.etat == 'repus'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement {{animal.etat}} et se trouve actuellement dans la {{animal.lieu}}. Il faut donc le divertir.</br>
+                        </h2>
+                        {% for equipement in equipements %}
+                            {% if equipement.id_equip == 'roue'%}
+                                {%if equipement.disponibilite == 'libre'%}
+                                    <h2>Pour cela rien de plus simple, il suffit de cliquer sur le boutton ci-dessous...</h2> 
+                                    <form method="POST" class="post-form">{% csrf_token %}
+                                        <button id="button" type="submit">Divertir</a></button>
+                                    </form>                                
+                                {%else%}
+                                    <h2>Attention la roue n'est pas libre !!</h2>
+                                {% endif%}
+                            {% endif %}
+                        {% endfor %}     
+                    {% endif %}
+                    {% if animal.etat == 'fatigué'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement très {{animal.etat}} et se trouve actuellement dans la {{animal.lieu}}. Il faut donc le coucher.</br>
+                        </h2>
+                        {% for equipement in equipements %}
+                            {% if equipement.id_equip == 'nid'%}
+                                {%if equipement.disponibilite == 'libre'%}
+                                    <h2>Pour cela rien de plus simple, il suffit de cliquer sur le boutton ci-dessous...</h2> 
+                                    <form method="POST" class="post-form">{% csrf_token %}
+                                        <button id="button" type="submit">Coucher</a></button>
+                                    </form>                                
+                                {%else%} 
+                                    <h2>Attention le nid n'est pas libre !!</h2>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}     
+                    {% endif %}
+                    {% if animal.etat == 'endormi'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement {{animal.etat}} et se trouve actuellement dans le {{animal.lieu}}. Il faut donc le réveiller.</br>
+                        </h2>
+                        <h2>Pour cela rien de plus simple, il suffit de cliquer sur le boutton ci-dessous...</h2> 
+                        <form method="POST" class="post-form">{% csrf_token %}
+                            <button id="button" type="submit">Réveiller</a></button>
+                        </form>                                
+                    {% endif %}                                                            
+        </div>
+    </body>
+</html>

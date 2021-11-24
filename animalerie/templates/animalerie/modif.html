@@ -1,0 +1,53 @@
+{% load static %}
+<html>
+    <head>
+        <title>L'animalerie</title>
+        <link rel="stylesheet" href="{% static 'css/animalerie.css' %}">
+    
+    </head>
+    <body>
+        <div>
+            <h1 id = 'titre_princ'><a href="/">L'ANIMALERIE</a></h1>        
+        </div>
+        <div id='second'>
+                    <img src="/{{animal.photo}}" alt="" id="picbig"/>
+                    {% if animal.etat == 'affamé'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement très {{animal.etat}} et se trouve actuellement dans la {{animal.lieu}}. Il faut donc le nourrir.</br>
+                        </h2>
+                        <form method="POST" class="post-form">{% csrf_token %}
+                            <h2>Cliquez une deuxième fois sur le bouton...</h2>
+                            <button id="button" type="submit">Nourrir</a></button>
+                        </form>
+                        
+                    {% endif %}
+                    {% if animal.etat == 'repus'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement {{animal.etat}} et se trouve actuellement dans la {{animal.lieu}}. Il faut donc le divertir.</br>
+                        </h2>
+                        <form method="POST" class="post-form">{% csrf_token %}
+                            <h2>Cliquez une deuxième fois sur le bouton...</h2>
+                            <button id="button" type="submit">Divertir</a></button>
+                        </form>
+                    {% endif %}
+                    {% if animal.etat == 'fatigué'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement très {{animal.etat}} et se trouve actuellement dans la {{animal.lieu}}. Il faut donc le coucher.</br>
+                        </h2>
+                        <h2>Cliquez une deuxième fois sur le bouton...</h2>
+                        <form method="POST" class="post-form">{% csrf_token %}
+                        <button id="button" type="submit">Coucher</button>
+                        </form>
+                    {% endif %}
+                    {% if animal.etat == 'endormi'%}
+                        <h2>Voici {{animal.id_animal}}. {{animal.id_animal}} est un {{animal.type}}, de la race des {{animal.race}}.</br>
+                        Il est actuellement {{animal.etat}} et se trouve actuellement dans le {{animal.lieu}}. Il faut donc le réveiller.</br>
+                        </h2>
+                        <form method="POST" class="post-form">{% csrf_token %}
+                        <h2>Cliquez une deuxième fois sur le bouton...</h2>
+                        <button id="button" type="submit">Réveiller</button>
+                    </form>
+                    {% endif %}                                                            
+        </div>
+    </body>
+</html>

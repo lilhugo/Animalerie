@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+    <head>
+        <title>L'animalerie</title>
+        <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/animalerie.css' %}">
+    
+    </head>
+    <body>
+        <div >
+            <h1 id='titre_princ'><a href="/">L'ANIMALERIE</a></h1>
+        </div>
+        <div id='debut'>
+            <h2>Bienvenue à l'animalerie pour les petites boules de poils !</h2>
+        </div>
+        <div id="ensemble">
+            <h2 id= 'animaux'>Les animaux :</h2>
+            {% for animal in animaux %}
+            <div id={{animal.id_animal}}>
+                <a href="{% url 'animal_modif' pk=animal.pk %}"><img src={{animal.photo}} alt="" id="pic"/></a>
+                <h2><a href="{% url 'animal_modif' pk=animal.pk %}">{{animal.id_animal}}</a></h2>
+                <h3 class="etat"> État : {{animal.etat}}</br>Lieu : {{animal.lieu}}</h3> 
+            </div>
+            {% endfor %}        
+            <h2 id= 'lieux'>Les lieux :</h2>
+            {% for equipement in equipements %}
+            <div id={{equipement.id_equip}}>
+                <a href="{% url 'equipement_detail' pk=equipement.pk %}"><img src={{equipement.photo}} alt="" id="pic"/></a>
+                <h2><a href="{% url 'equipement_detail' pk=equipement.pk %}">{{equipement.id_equip}}</a></h2>
+                {% if equipement.disponibilite == 'libre' %}
+                    <h3 id='libre'>Disponibilité :</br> &#10004 {{equipement.disponibilite}}</h3>   
+                {% else %}
+                    <h3 id='occupe'>Disponibilité :</br> &#10006 {{equipement.disponibilite}}</h3>    
+                {% endif %}  
+            </div>   
+            {% endfor %}        
+        </div>     
+    </body>
+</html>
